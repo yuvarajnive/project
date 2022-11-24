@@ -17,14 +17,13 @@
                             <?php
                             $c_or_e = old('candidate_or_employer', 'candidate');
                             ?>
-                            <li class="nav-item"><a class="nav-link {{($c_or_e == 'candidate')? 'active':''}}" data-toggle="tab" href="#candidate" aria-expanded="true">{{__('Candidate')}}</a></li>
-                            <li class="nav-item"><a class="nav-link {{($c_or_e == 'employer')? 'active':''}}" data-toggle="tab" href="#employer" aria-expanded="false">{{__('Employer')}}</a></li>
+                            <li class="nav-item"><a class="nav-link {{($c_or_e == 'candidate')? 'active':'active'}}" data-toggle="tab" href="#candidate" aria-expanded="true">{{__('Candidate')}}</a></li>
                         </ul>
                     </div>
 					
 					
                     <div class="tab-content">
-                        <div id="candidate" class="formpanel tab-pane {{($c_or_e == 'candidate')? 'active':''}}">
+                        <div id="candidate" class="formpanel tab-pane {{($c_or_e == 'candidate')? 'active':'active'}}">
                             
                             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
@@ -51,39 +50,8 @@
                                 <!-- login form  end--> 
                             </form>
                             <!-- sign up form -->
-                    <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('New User')}}? <a href="{{route('register')}}">{{__('Register Here')}}</a></div>
-                    <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('Forgot Your Password')}}? <a href="{{ route('password.request') }}">{{__('Click here')}}</a></div>
-                    <!-- sign up form end-->
-                        </div>
-                        <div id="employer" class="formpanel tab-pane fade {{($c_or_e == 'employer')? 'active':''}}">
-                        
-                            <form class="form-horizontal" method="POST" action="{{ route('company.login') }}">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="candidate_or_employer" value="employer" />
-                                <div class="formpanel">
-                                    <div class="formrow{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="{{__('Email Address')}}">
-                                        @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                    <div class="formrow{{ $errors->has('password') ? ' has-error' : '' }}">
-                                        <input id="password" type="password" class="form-control" name="password" value="" required placeholder="{{__('Password')}}">
-                                        @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>            
-                                    <input type="submit" class="btn" value="{{__('Login')}}">
-                                </div>
-                                <!-- login form  end--> 
-                            </form>
-                            <!-- sign up form -->
-                    <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('New User')}}? <a href="{{route('register')}}">{{__('Register Here')}}</a></div>
-                    <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('Forgot Your Password')}}? <a href="{{ route('company.password.request') }}">{{__('Click here')}}</a></div>
+                            <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('New User')}}? <a href="{{route('register')}}">{{__('Register Here')}}</a></div>
+                             <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> {{__('Forgot Your Password')}}? <a href="{{ route('password.request') }}">{{__('Click here')}}</a></div>
                     <!-- sign up form end-->
                         </div>
                     </div>

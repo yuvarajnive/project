@@ -55,7 +55,8 @@
                                 </ul>
                             </li>
                             @endif @if(!Auth::user() && !Auth::guard('company')->user())
-                            <li class="nav-item"><a href="{{route('login')}}" class="nav-link">{{__('Sign in')}}</a> </li>
+                            <li class="nav-item"><a href="{{route('login')}}" class="nav-link">{{__('Condidate Sign in')}}</a> </li>
+                            <li class="nav-item"><a href="{{route('loginEmp')}}" class="nav-link">{{__('Employer Sign in')}}</a> </li>
 							<li class="nav-item"><a href="{{route('register')}}" class="nav-link register">{{__('Register')}}</a> </li>                            
                             @endif
                             

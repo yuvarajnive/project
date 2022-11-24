@@ -53,7 +53,6 @@ $real_path = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'front_routes' . DIRECTOR
 /* * ******** IndexController ************ */
 
 
-
 Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/check-time', 'IndexController@checkTime')->name('check-time');
@@ -133,8 +132,7 @@ Route::get('login/jobseeker/{provider}', 'Auth\LoginController@redirectToProvide
 Route::get('login/jobseeker/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-
-Route::get('login/employer/{provider}', 'Company\Auth\LoginController@redirectToProvider');
+Route::get('loginEmp/employer/{provider}', 'Company\Auth\LoginController@redirectToProvider');
 
 
 

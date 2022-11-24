@@ -13,33 +13,21 @@
 @include('includes.inner_page_title', ['page_title'=>__('Job Listing')]) 
 
 
-
-
-
 @include('flash::message')
 
 @include('includes.inner_top_search')
-
-
 
 <!-- Inner Page Title end -->
 
 <div class="listpgWraper">
 
-    <div class="container">
-
-        
-
+    <div class="container-fluid">
         <form action="{{route('job.list')}}" method="get">
 
             <!-- Search Result and sidebar start -->
 
             <div class="row"> 
-
-                @include('includes.job_list_side_bar')
-
-                
-
+            
                 <div class="col-lg-8 col-sm-12"> 
 
                     <!-- Search List -->
@@ -62,51 +50,34 @@
 
                             <?php }else{ ?>
 
-						
-
-						
-
-						
-
                         <li>
 
                             <div class="row">
 
-                                <div class="col-md-8 col-sm-8">
+                                <div class="col-md-10 col-sm-10">
 
                                     <div class="jobimg">{{$company->printCompanyImage()}}</div>
 
                                     <div class="jobinfo">
-
-                                        <h3><a href="{{route('job.detail', [$job->slug])}}" title="{{$job->title}}">{{$job->title}}</a></h3>
-
-                                        <div class="companyName"><a href="{{route('company.detail', $company->slug)}}" title="{{$company->name}}">{{$company->name}}</a></div>
-
+                                        <h4>{{$company->name}}</h4>
+                                        <div class="companyName">{{$job->title}}</div>
                                         <div class="location">
 
-                                            <label class="fulltime" title="{{$job->getJobType('job_type')}}">{{$job->getJobType('job_type')}}</label>
-
-                                            - <span>{{$job->getCity('city')}}</span></div>
-
+                                            <!-- <label class="" title="{{$job->getJobType('job_type')}}">{{$job->getJobType('job_type')}}</label> -->
+                                            <span>{{$job->getJobType('job_type')}}</span>
+                                            <span>{{$job->getCity('city')}}</span>
+                                             <span>Published 3 hours ago</span>
+                                        </div>
+                                            
                                     </div>
-
+                                    <!-- <p>{{\Illuminate\Support\Str::limit(strip_tags($job->description), 150, '...')}}</p> -->
                                     <div class="clearfix"></div>
 
                                 </div>
-
-                                <div class="col-md-4 col-sm-4">
-
-                                    <div class="listbtn"><a href="{{route('job.detail', [$job->slug])}}">{{__('View Details')}}</a></div>
-
-                                </div>
-
+                                
                             </div>
 
-                            <p>{{\Illuminate\Support\Str::limit(strip_tags($job->description), 150, '...')}}</p>
-
                         </li>
-
-						
 
 						 <?php } ?>
 
@@ -120,30 +91,9 @@
 
                         @endforeach @endif
 
-						
-
-						
-
-						
-
-                           
-
-                       
-
                             <!-- job end -->
 
-                            
-
-						
-
-						
-
-						
-
                     </ul>
-
-
-
                     <!-- Pagination Start -->
 
                     <div class="pagiWrap">
@@ -176,14 +126,11 @@
 
                     <!-- Pagination end --> 
 
-                   
-
-
-
                 </div>
-
-				
-				
+                <div class="col-lg-4 col-sm-12">
+                    <h4>Google Ads</h4>
+                <img alt="test" title="Google Adsense" class="EventCard__cover__3bzUV rounded" src="https://d1guu6n8gz71j.cloudfront.net/system/post/previews/6507683/big.jpeg?1667488477">       
+                </div>
 
             </div>
 
@@ -293,6 +240,11 @@
 
         cursor:pointer;
 
+    }
+
+    .EventCard__cover__3bzUV {
+        width: 100%;
+        /* height: 100%; */
     }
 
 </style>
