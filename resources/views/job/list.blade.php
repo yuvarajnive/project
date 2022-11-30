@@ -10,8 +10,6 @@
 
 <!-- Inner Page Title start --> 
 
-@include('includes.inner_page_title', ['page_title'=>__('Job Listing')]) 
-
 
 @include('flash::message')
 
@@ -35,7 +33,6 @@
                     <ul class="searchList">
 
                         <!-- job start --> 
-
                         @if(isset($jobs) && count($jobs)) <?php $count_1 = 1; ?> @foreach($jobs as $job) @php $company =
 
                             $job->getCompany();  @endphp
@@ -49,8 +46,9 @@
                                 <li class="inpostad">{!! $siteSetting->listing_page_horizontal_ad !!}</li>
 
                             <?php }else{ ?>
-
-                        <li>
+                                
+                        <li class="jobContainer">
+                            <a href="{{route('job.detail', [$job->slug])}}" title="{{$job->title}}">
 
                             <div class="row">
 
@@ -76,7 +74,7 @@
                                 </div>
                                 
                             </div>
-
+                            </a>
                         </li>
 
 						 <?php } ?>
@@ -215,6 +213,11 @@
 @push('styles')
 
 <style type="text/css">
+    .jobContainer a:hover {
+        text-decoration: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        transform: translateY(-5px);
+    }
 
     .searchList li .jobimg {
 

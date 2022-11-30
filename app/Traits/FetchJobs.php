@@ -59,7 +59,7 @@ trait FetchJobs
 
         //$query->orderBy('jobs.is_featured', 'DESC');
         $query->orderBy('jobs.id', 'DESC');
-        //echo $query->toSql();exit;
+        // echo $query->toSql();exit;
         return $query->paginate($limit);
     }
 
