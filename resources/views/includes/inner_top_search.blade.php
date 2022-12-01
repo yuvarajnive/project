@@ -34,10 +34,10 @@
 					<div class="input-field second-wrap">
 						<div class="input-select">
 						<select data-trigger="" name="choices-single-defaul">
-							<option placeholder="">Job Types</option>
-							<option>Subject A</option>
-							<option>Subject B</option>
-							<option>Subject C</option>
+						<option placeholder="JobTypes">JobTypes</option>
+							@foreach($jobTypes as $typeId=>$type)
+							<option placeholder="" value="{{$typeId}}">{{$type}}</option>
+							@endforeach
 						</select>
 						</div>
 					</div>
@@ -51,15 +51,9 @@
 		<div class="row searchFilter">
 			<div class="col-md-2">
 				<select class="form-control form-select form-select-sm myselect" multiple="multiple" id="searchFilterSector" aria-label=".form-select-sm example">
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
+				@foreach($industries as $industryId=>$name)
+				<option placeholder="" value="{{$industryId}}">{{$name}}</option>
+				@endforeach
 				</select>
 			</div>
 			<div class="col-md-2">
@@ -77,15 +71,9 @@
 			</div>
 			<div class="col-md-2">
 				<select class="form-control form-select form-select-sm" id="searchFilterLan" multiple="multiple" aria-label=".form-select-sm example">
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
+				@foreach($languages as $languageId=>$name)
+				<option placeholder="" value="{{$languageId}}">{{$name}}</option>
+				@endforeach
 				</select>
 			</div>
 		</div>

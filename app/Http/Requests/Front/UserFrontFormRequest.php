@@ -38,7 +38,7 @@ class UserFrontFormRequest extends Request
             'date_of_birth' => 'required',
             //'gender_id' => 'required',
             //'marital_status_id' => 'required',
-            'nationality_id' => 'required',
+            // 'nationality_id' => 'required',
             //'national_id_card_number' => 'required|max:80',
             'country_id' => 'required',
             'state_id' => 'required',

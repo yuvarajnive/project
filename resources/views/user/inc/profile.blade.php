@@ -66,12 +66,6 @@
             {!! APFrmErrHelp::showErrors($errors, 'first_name') !!} </div>
     </div>
     <div class="col-md-6">
-        <div class="formrow {!! APFrmErrHelp::hasError($errors, 'middle_name') !!}">
-			<label for="">{{__('Midlle Name')}}</label>
-			{!! Form::text('middle_name', null, array('class'=>'form-control', 'id'=>'middle_name', 'placeholder'=>__('Middle Name'))) !!}
-            {!! APFrmErrHelp::showErrors($errors, 'middle_name') !!}</div>
-    </div>
-    <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'last_name') !!}">
 			<label for="">{{__('Last Name')}}</label>
 			{!! Form::text('last_name', null, array('class'=>'form-control', 'id'=>'last_name', 'placeholder'=>__('Last Name'))) !!}
@@ -90,12 +84,6 @@
 			{!! Form::select('gender_id', [''=>__('Select Gender')]+$genders, null, array('class'=>'form-control', 'id'=>'gender_id')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'gender_id') !!} </div>
     </div>
-    <!-- <div class="col-md-6">
-        <div class="formrow {!! APFrmErrHelp::hasError($errors, 'marital_status_id') !!}">
-			<label for="">{{__('Martial Status')}}</label>
-			{!! Form::select('marital_status_id', [''=>__('Select Marital Status')]+$maritalStatuses, null, array('class'=>'form-control', 'id'=>'marital_status_id')) !!}
-            {!! APFrmErrHelp::showErrors($errors, 'marital_status_id') !!} </div>
-    </div> -->
     <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'country_id') !!}">
 			<label for="">{{__('Country')}}</label>
@@ -112,12 +100,6 @@
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'city_id') !!}">
 			<label for="">{{__('City')}}</label>
 			<span id="city_dd"> {!! Form::select('city_id', [''=>__('Select City')], null, array('class'=>'form-control', 'id'=>'city_id')) !!} </span> {!! APFrmErrHelp::showErrors($errors, 'city_id') !!} </div>
-    </div>
-    <div class="col-md-6">
-        <div class="formrow {!! APFrmErrHelp::hasError($errors, 'nationality_id') !!}">
-			<label for="">{{__('Nationality')}}</label>
-			{!! Form::select('nationality_id', [''=>__('Select Nationality')]+$nationalities, null, array('class'=>'form-control', 'id'=>'nationality_id')) !!}
-            {!! APFrmErrHelp::showErrors($errors, 'nationality_id') !!} </div>
     </div>
     <div class="col-md-6">
        
@@ -138,16 +120,6 @@
 			<label for="">{{__('Date of Birth')}}</label>
 			{!! Form::date('date_of_birth', $dob, array('class'=>'form-control', 'id'=>'date_of_birth', 'placeholder'=>__('Date of Birth'), 'autocomplete'=>'off')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'date_of_birth') !!} </div>
-		
-		
-		
-		
-    </div>
-    <div class="col-md-6">
-        <div class="formrow {!! APFrmErrHelp::hasError($errors, 'national_id_card_number') !!}">
-			<label for="">{{__('National ID')}}</label>
-			{!! Form::text('national_id_card_number', null, array('class'=>'form-control', 'id'=>'national_id_card_number', 'placeholder'=>__('National ID Card#'))) !!}
-            {!! APFrmErrHelp::showErrors($errors, 'national_id_card_number') !!} </div>
     </div>
     <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'phone') !!}">
@@ -171,17 +143,6 @@
 </div>
 
 <hr>
-<!-- <h5>{{__('Add Video Profile')}}</h5>
-
-<div class="row">
-    <div class="col-md-12" id="video_link_id">
-        <div class="formrow {!! APFrmErrHelp::hasError($errors, 'video_link') !!}">
-            <label for="">{{__('Video Link')}} - sample: https://www.youtube.com/embed/538cRSPrwZU</label>
-            {!! Form::textarea('video_link', null, array('class'=>'form-control', 'id'=>'video_link', 'placeholder'=>__('Video Link'))) !!}
-            {!! APFrmErrHelp::showErrors($errors, 'video_link') !!} </div>
-    </div>
-</div>
-<hr> -->
 
 <h5>{{__('Career Information')}}</h5>
 

@@ -158,6 +158,11 @@ class JobController extends Controller
 
         $currencies = DataArrayHelper::currenciesArray();
 
+        $jobTypes = DataArrayHelper::langJobTypesArray();
+        $languages = DataArrayHelper::languagesArray();
+        $industries = DataArrayHelper::langIndustriesArray();
+        // print_r($jobTypes); exit;
+
         /*         * ************************************************** */
 
         $seo = Seo::where('seo.page_title', 'like', 'jobs')->first();
@@ -180,12 +185,15 @@ class JobController extends Controller
                         ->with('genderIdsArray', $genderIdsArray)
                         ->with('degreeLevelIdsArray', $degreeLevelIdsArray)
                         ->with('jobExperienceIdsArray', $jobExperienceIdsArray)
-                        ->with('seo', $seo);
+                        ->with('seo', $seo)
+                        ->with('jobTypes', $jobTypes)
+                        ->with('languages', $languages)
+                        ->with('industries', $industries);
     }
 
     public function jobDetail(Request $request, $job_slug)
     {
-
+        $user = Auth::user();
         $job = Job::where('slug', 'like', $job_slug)->firstOrFail();
         /*         * ************************************************** */
         $search = '';
@@ -216,6 +224,7 @@ class JobController extends Controller
 
         $seoArray = $this->getSEO((array) $job->functional_area_id, (array) $job->country_id, (array) $job->state_id, (array) $job->city_id, (array) $job->career_level_id, (array) $job->job_type_id, (array) $job->job_shift_id, (array) $job->gender_id, (array) $job->degree_level_id, (array) $job->job_experience_id);
         /*         * ************************************************** */
+        $myCvs = ProfileCv::where('user_id', '=', $user->id)->pluck('title', 'id')->toArray();
         $seo = (object) array(
                     'seo_title' => $job->title,
                     'seo_description' => $seoArray['description'],
@@ -225,7 +234,9 @@ class JobController extends Controller
         return view('job.detail')
                         ->with('job', $job)
                         ->with('relatedJobs', $relatedJobs)
-                        ->with('seo', $seo);
+                        ->with('seo', $seo)
+                        ->with('job_slug', $job_slug)
+                        ->with('myCvs', $myCvs);
     }
 
     /*     * ************************************************** */

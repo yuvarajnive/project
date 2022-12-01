@@ -84,7 +84,7 @@ class UserController extends Controller
     public function myProfile()
     {
         $genders = DataArrayHelper::langGendersArray();
-        $maritalStatuses = DataArrayHelper::langMaritalStatusesArray();
+        // $maritalStatuses = DataArrayHelper::langMaritalStatusesArray();
         $nationalities = DataArrayHelper::langNationalitiesArray();
         $countries = DataArrayHelper::langCountriesArray();
         $jobExperiences = DataArrayHelper::langJobExperiencesArray();
@@ -96,8 +96,8 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         return view('user.edit_profile')
                         ->with('genders', $genders)
-                        ->with('maritalStatuses', $maritalStatuses)
-                        ->with('nationalities', $nationalities)
+                        // ->with('maritalStatuses', $maritalStatuses)
+                        // ->with('nationalities', $nationalities)
                         ->with('countries', $countries)
                         ->with('jobExperiences', $jobExperiences)
                         ->with('careerLevels', $careerLevels)
@@ -129,7 +129,7 @@ class UserController extends Controller
 		
         /*         * ************************************** */
         $user->first_name = $request->input('first_name');
-        $user->middle_name = $request->input('middle_name');
+        $user->middle_name = '';
         $user->last_name = $request->input('last_name');
         /*         * *********************** */
         $user->name = $user->getName();
@@ -142,8 +142,8 @@ class UserController extends Controller
         $user->date_of_birth = $request->input('date_of_birth');
         $user->gender_id = $request->input('gender_id');
        // $user->marital_status_id = $request->input('marital_status_id');
-        $user->nationality_id = $request->input('nationality_id');
-        $user->national_id_card_number = $request->input('national_id_card_number');
+        $user->nationality_id = null;
+        $user->national_id_card_number = null;
         $user->country_id = $request->input('country_id');
         $user->state_id = $request->input('state_id');
         $user->city_id = $request->input('city_id');

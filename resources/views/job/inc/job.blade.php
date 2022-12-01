@@ -15,8 +15,6 @@
             {!! APFrmErrHelp::showErrors($errors, 'description') !!} </div>
     </div>
 	
-	 	
-	
     <div class="col-md-12">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'skills') !!}">
             <?php
@@ -90,18 +88,18 @@
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'job_type_id') !!}" id="job_type_id_div"> {!! Form::select('job_type_id', ['' => __('Select Job Type')]+$jobTypes, null, array('class'=>'form-control', 'id'=>'job_type_id')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'job_type_id') !!} </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'job_shift_id') !!}" id="job_shift_id_div"> {!! Form::select('job_shift_id', ['' => __('Select Job Shift')]+$jobShifts, null, array('class'=>'form-control', 'id'=>'job_shift_id')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'job_shift_id') !!} </div>
-    </div>
+    </div> -->
     <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'num_of_positions') !!}" id="num_of_positions_div"> {!! Form::select('num_of_positions', ['' => __('Select number of Positions')]+MiscHelper::getNumPositions(), null, array('class'=>'form-control', 'id'=>'num_of_positions')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'num_of_positions') !!} </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'gender_id') !!}" id="gender_id_div"> {!! Form::select('gender_id', ['' => __('No preference')]+$genders, null, array('class'=>'form-control', 'id'=>'gender_id')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'gender_id') !!} </div>
-    </div>
+    </div> -->
     <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'expiry_date') !!}"> {!! Form::text('expiry_date', null, array('class'=>'form-control datepicker', 'id'=>'expiry_date', 'placeholder'=>__('Job expiry date'), 'autocomplete'=>'off')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'expiry_date') !!} </div>
@@ -114,7 +112,7 @@
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'job_experience_id') !!}" id="job_experience_id_div"> {!! Form::select('job_experience_id', ['' => __('Select Required job experience')]+$jobExperiences, null, array('class'=>'form-control', 'id'=>'job_experience_id')) !!}
             {!! APFrmErrHelp::showErrors($errors, 'job_experience_id') !!} </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
         <div class="formrow {!! APFrmErrHelp::hasError($errors, 'is_freelance') !!}"> {!! Form::label('is_freelance', __('Is Freelance?'), ['class' => 'bold']) !!}
             <div class="radio-list">
                 <?php
@@ -133,7 +131,7 @@
                     {{__('No')}} </label>
             </div>
             {!! APFrmErrHelp::showErrors($errors, 'is_freelance') !!} </div>
-    </div>
+    </div> -->
     <div class="col-md-12">
         <div class="formrow">
             <button type="submit" class="btn">{{__('Update Job')}} <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>

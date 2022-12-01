@@ -7,16 +7,11 @@
 @include('includes.inner_page_title', ['page_title'=>__('Job Detail')]) 
 <!-- Inner Page Title end -->
 @include('flash::message')
-@include('includes.inner_top_search')
 
 
 @php
 $company = $job->getCompany();
 @endphp
-
-
-
-
 
 
 <div class="listpgWraper">
@@ -44,7 +39,7 @@ $company = $job->getCompany();
 						@endif
                     
             </div>
-			
+  
 			<!-- Job Detail start -->
                 <div class="jobmainreq">
                     <div class="jobdetail">
@@ -134,12 +129,48 @@ $company = $job->getCompany();
                 @elseif(Auth::check() && Auth::user()->isAppliedOnJob($job->id))
                 <a href="javascript:;" class="btn apply applied"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Already Applied')}}</a>
                 @else
-                <a href="{{route('apply.job', $job->slug)}}" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Apply Now')}}</a>
+                <!-- <a href="{{route('apply.job', $job->slug)}}" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Apply Now')}}</a> -->
+                <!-- <button type="button" class="btn btn-primary apply" data-toggle="modal" data-target="#myModal"> {{__('Apply Now')}}</button> -->
+                <a href="{{route('apply.job', $job->slug)}}" class="btn apply" data-toggle="modal" data-target="#myModal"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Apply Now')}}</a>
                 @endif
 				</div>
-				
-							
-				
+            </div>
+        </div>
+        
+		<div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                        <div class="row">
+                            <div class="userccount">
+                                <div class="formpanel"> {!! Form::open(array('method' => 'post', 'route' => ['post.apply.job', $job_slug])) !!} 
+                                    <!-- Job Information -->
+                                    <h5>{{$job->title}}</h5>
+                                        <div class="col-md-12">
+                                            <div class="formrow{{ $errors->has('cv_id') ? ' has-error' : '' }}"> {!! Form::select('cv_id', [''=>__('Select CV')]+$myCvs, null, array('class'=>'form-control', 'id'=>'cv_id')) !!}
+                                                @if ($errors->has('cv_id')) <span class="help-block"> <strong>{{ $errors->first('cv_id') }}</strong> </span> @endif </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="formrow{{ $errors->has('current_salary') ? ' has-error' : '' }}"> {!! Form::number('current_salary', null, array('class'=>'form-control', 'id'=>'current_salary', 'placeholder'=>__('Current salary').' ('.$job->getSalaryPeriod('salary_period').')' )) !!}
+                                                @if ($errors->has('current_salary')) <span class="help-block"> <strong>{{ $errors->first('current_salary') }}</strong> </span> @endif </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="formrow{{ $errors->has('expected_salary') ? ' has-error' : '' }}"> {!! Form::number('expected_salary', null, array('class'=>'form-control', 'id'=>'expected_salary', 'placeholder'=>__('Expected salary').' ('.$job->getSalaryPeriod('salary_period').')')) !!}
+                                                @if ($errors->has('expected_salary')) <span class="help-block"> <strong>{{ $errors->first('expected_salary') }}</strong> </span> @endif </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="formrow{{ $errors->has('salary_currency') ? ' has-error' : '' }}"> {!! Form::text('salary_currency', Request::get('salary_currency', $siteSetting->default_currency_code), array('class'=>'form-control', 'id'=>'salary_currency', 'placeholder'=>__('Salary Currency'), 'autocomplete'=>'off')) !!}
+                                                @if ($errors->has('salary_currency')) <span class="help-block"> <strong>{{ $errors->first('salary_currency') }}</strong> </span> @endif </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="formrow{{ $errors->has('salary_currency') ? ' has-error' : '' }}"> {!! Form::textarea('job_cover_letter', null, array('class'=>'form-control', 'id'=>'cover_letter', 'placeholder'=>__('Cover Letter'), 'autocomplete'=>'off')) !!}
+                                                <!-- @if ($errors->has('salary_currency')) <span class="help-block"> <strong>{{ $errors->first('salary_currency') }}</strong> </span> @endif </div> -->
+                                        </div>
+                                    <br>
+                                    <input type="submit" class="btn" value="{{__('Apply on Job')}}">
+                                    {!! Form::close() !!} </div>
+                            </div>
+                        </div>
+                </div>    
             </div>
         </div>
     </div>
@@ -171,9 +202,15 @@ $company = $job->getCompany();
                 $(this).next().removeClass('view_more');
             }
         });
-
-
-
+        $('#salary_currency').typeahead({
+            source: function (query, process) {
+                return $.get("{{ route('typeahead.currency_codes') }}", {query: query}, function (data) {
+                    console.log(data);
+                    data = $.parseJSON(data);
+                    return process(data);
+                });
+            }
+        });
     });
 </script> 
 @endpush

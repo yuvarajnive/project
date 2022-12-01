@@ -320,6 +320,14 @@ class CompanyController extends Controller
                         ->with('jobs', $jobs);
     }
 
+    public function postedJobsnew(Request $request)
+    {
+        $jobs = Auth::guard('company')->user()->jobs()->paginate(10);
+        // print_r($jobs); exit;
+        return view('job.company_posted_jobs-new')
+                        ->with('jobs', $jobs);
+    }
+
     public function listAppliedUsers(Request $request, $job_id)
     {
         $job_applications = JobApply::where('job_id', '=', $job_id)->get();
